@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@model RegisterViewModel
+
+@section styles{
+    <link rel="stylesheet" href="~/css/sigin-out.css" />
+}
+<div id="registerModal" data-backdrop="static"  class="modal shade" allow-modals="true" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">会议管理平台</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="请输入注册账号" asp-for="UserName"
+                               name="userName" id="userName" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" min="8" placeholder="请输入密码" asp-for="Password"
+                               name="Password" id="Password" required />
+
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" min="8" placeholder="请输入确认密码" asp-for="ConfirmPassword"
+                               name="ConfirmPassword" id="ConfirmPassword" required />
+
+                    </div>
+                    <div class="form-group">
+                        <button id="register" class="submit">注册</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+    {
+    <script type="text/javascript" src="~/js/register.js"></script>
+}

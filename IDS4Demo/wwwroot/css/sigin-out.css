@@ -1,0 +1,59 @@
+﻿.submit {
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    /*-weibkit-transition: all .3s;*/
+    -moz-transition: all .3s;
+    transition: all .3s;
+    color: #fff;
+    background-color: #f20d0d;
+    border-color: #f20d0d;
+    opacity: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 32px;
+    font-size: 16px;
+    line-height: 24px;
+    border-radius: 24px;
+}
+
+.modal.in .modal-dialog {
+    width: 384px;
+    position: fixed;
+    /*z-index: 100;*/
+    padding-top: 10px;
+    padding-bottom: 30px;
+    left: 50%;
+    top: 50%;
+    margin: -192px 0 0 -192px;
+}
+
+.form-control {
+    width: 100%;
+    height: 48px;
+    font-size: 12px;
+    line-height: 20px;
+    box-sizing: border-box;
+    padding: 14px;
+    box-shadow: 2px 0 5px 0 #fff;
+    background: rgba(28,31,33,.06);
+    border-radius: 8px;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /*z-index: 100;*/
+    background-color: #eee7e7;
+    /*opacity: 1 !important;*/
+    filter: alpha(opacity=0) !important;
+}
+
+
+.modal-backdrop.in {
+    filter: alpha(opacity=90);
+    opacity: 0.6;
+}
