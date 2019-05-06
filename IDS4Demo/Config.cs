@@ -1,4 +1,5 @@
-﻿using IdentityServer4;
+﻿// Copyright (c) Jeffcky <see cref="https://jeffcky.ke.qq.com/"/> All rights reserved.
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 

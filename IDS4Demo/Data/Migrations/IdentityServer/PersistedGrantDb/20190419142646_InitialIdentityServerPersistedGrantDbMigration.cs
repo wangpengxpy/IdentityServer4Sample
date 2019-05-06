@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Copyright (c) Jeffcky <see cref="https://jeffcky.ke.qq.com/"/> All rights reserved.
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IDS4Demo.Data.Migrations.IdentityServer.PersistedGrantDb

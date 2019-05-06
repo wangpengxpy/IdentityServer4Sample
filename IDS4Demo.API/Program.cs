@@ -1,4 +1,4 @@
-﻿Copyright (c) 2019 https://jeffcky.ke.qq.com/
+﻿// Copyright (c) Jeffcky <see cref="https://jeffcky.ke.qq.com/"/> All rights reserved.
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

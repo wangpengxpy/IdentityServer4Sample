@@ -1,4 +1,5 @@
-﻿namespace IDS4Demo
+﻿// Copyright (c) Jeffcky <see cref="https://jeffcky.ke.qq.com/"/> All rights reserved.
+namespace IDS4Demo
 {
     public class OperateResult
     {
