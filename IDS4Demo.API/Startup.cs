@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace IDS4Demo.API
 {
@@ -19,6 +20,8 @@ namespace IDS4Demo.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -40,6 +43,16 @@ namespace IDS4Demo.API
             }
 
             app.UseAuthentication();
+
+            app.UseCors(policy =>
+            {
+                policy.WithOrigins(new[] { "http://localhost:5002" })
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .SetPreflightMaxAge(TimeSpan.FromHours(1))
+                    .WithExposedHeaders("WWW-Authenticate");
+            });
 
             app.UseMvc();
         }
