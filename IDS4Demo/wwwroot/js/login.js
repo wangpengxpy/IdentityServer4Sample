@@ -66,10 +66,10 @@
     dom.Submit.on('click', login);
 
     function _getVerifyToken() {
-        return $('input[type=hidden][name="__RequestVerificationToken"]').val()
+        return $('input[type=hidden][name="__RequestVerificationToken"]').val();
     }
 
     dom.Register.on('click', function (e) {
-        conference.redirect('/account/register');        
+        conference.redirect('/account/register');
     });
 }(this, jQuery));

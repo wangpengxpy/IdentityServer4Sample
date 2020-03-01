@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Threading.Tasks;
 
 namespace IDS4Demo.Client
@@ -36,7 +38,11 @@ namespace IDS4Demo.Client
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = "oidc";
             })
-           .AddCookie()
+           .AddCookie(options=> 
+           {
+               options.SlidingExpiration = true;
+               options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+           })
            .AddOpenIdConnect("oidc", options =>
            {
                options.AuthenticationMethod = OpenIdConnectRedirectBehavior.FormPost;
@@ -64,12 +70,17 @@ namespace IDS4Demo.Client
                    context.Response.Cookies.Append("ack", context.TokenEndpointResponse.AccessToken);
                    return Task.CompletedTask;
                };
+               options.Events.OnTicketReceived = (context) => 
+               { 
+                   context.Properties.ExpiresUtc = DateTime.UtcNow.AddMinutes(1);
+                   return Task.CompletedTask;
+               };
            });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -80,15 +91,17 @@ namespace IDS4Demo.Client
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseAuthentication();
-
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
