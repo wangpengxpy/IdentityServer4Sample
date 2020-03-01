@@ -97,6 +97,8 @@ namespace IDS4Demo.Client
 
             app.UseAuthentication();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
