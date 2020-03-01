@@ -57,7 +57,7 @@ namespace IDS4Demo.Client
                options.Scope.Clear();
                options.Scope.Add("openid");
                options.Scope.Add("profile");
-               options.Scope.Add("order.admin");
+               //options.Scope.Add("order.admin");
                options.Scope.Add("offline_access");
                options.GetClaimsFromUserInfoEndpoint = true;
                options.TokenValidationParameters = new TokenValidationParameters
